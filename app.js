@@ -188,7 +188,7 @@ function renderProgress() {
 
 function renderControls() {
     hijriDayDisplay.textContent = currentDay;
-    khatmahInput.value = appState.targetKhatmahs;
+    khatmahInput.textContent = appState.targetKhatmahs;
     outsideBanner.classList.toggle('hidden', inRamadan);
 }
 

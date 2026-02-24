@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Khatmah | CMU-Q MSA Premium</title>
+    <title>Khatmah | CMU-Q MSA</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -26,8 +26,7 @@
     <header class="text-center py-5 border-b border-slate-700/50">
         <img src="logo.png" alt="CMU-Q MSA Logo" class="w-16 h-auto mx-auto mb-2 rounded-lg object-contain">
         <h1 class="text-xl font-bold text-slate-100">Khatmah</h1>
-        <p class="text-xs text-cmu-gold font-medium tracking-wider uppercase">CMU-Q MSA Premium</p>
-        <p class="text-sm text-slate-400 mt-1">Your Ramadan reading companion</p>
+        <p class="text-sm text-slate-500 mt-1">Finish the Quran this Ramadan</p>
     </header>
 
     <!-- Progress Bar (state-driven, never read from DOM) -->
@@ -55,8 +54,7 @@
             <span class="text-xs text-slate-500 uppercase tracking-wider">Khatmahs</span>
             <div class="khatmah-input-group flex items-center rounded-lg overflow-hidden border border-slate-600">
                 <button id="khatmah-minus" type="button" class="khatmah-btn w-9 h-9 flex items-center justify-center font-bold" aria-label="Decrease khatmahs">−</button>
-                <input type="number" id="khatmah-input" min="1" max="10" value="1" readonly
-                    class="khatmah-input w-12 text-center bg-slate-800/50 text-lg font-semibold focus:outline-none focus:ring-0">
+                <span id="khatmah-input" class="khatmah-value w-12 text-center bg-slate-800/50 text-lg font-semibold py-2" aria-live="polite">1</span>
                 <button id="khatmah-plus" type="button" class="khatmah-btn w-9 h-9 flex items-center justify-center font-bold" aria-label="Increase khatmahs">+</button>
             </div>
         </div>

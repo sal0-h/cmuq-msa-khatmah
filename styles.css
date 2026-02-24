@@ -1,23 +1,13 @@
 /**
- * Khatmah - CMU-Q MSA Premium
+ * Khatmah - CMU-Q MSA
  * Custom overrides, glassmorphism, scrollbar hiding
  */
 
-/* --- Number Input: Hide Native Spinners --- */
-.khatmah-input,
-input[type="number"] {
-    -webkit-appearance: none;
-    -moz-appearance: textfield;
-    appearance: none;
-}
-
-.khatmah-input::-webkit-outer-spin-button,
-.khatmah-input::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    appearance: none;
-    margin: 0;
+/* --- Khatmahs display (span, no native spinners) --- */
+.khatmah-value {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* --- Custom +/- Buttons --- */
