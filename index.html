@@ -3,50 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quran Context | CMUQ MSA</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Khatmah | CMU-Q MSA Premium</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+                    colors: {
+                        'cmu-red': '#C41230',
+                        'cmu-gold': '#F2A900',
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="bg-slate-900 text-slate-100 font-sans min-h-screen flex flex-col antialiased">
+    <!-- Header -->
+    <header class="text-center py-5 border-b border-slate-700/50">
+        <img src="logo.png" alt="CMU-Q MSA Logo" class="w-16 h-auto mx-auto mb-2 rounded-lg object-contain">
+        <h1 class="text-xl font-bold text-slate-100">Khatmah</h1>
+        <p class="text-xs text-cmu-gold font-medium tracking-wider uppercase">CMU-Q MSA Premium</p>
+        <p class="text-sm text-slate-400 mt-1">Your Ramadan reading companion</p>
+    </header>
 
-    <div class="app-container">
-        <header>
-            <div class="logo-wrapper">
-                <img src="logo.png" alt="CMUQ MSA Logo" class="logo">
+    <!-- Progress Bar (state-driven, never read from DOM) -->
+    <div class="sticky top-0 z-20 glass-bar border-b border-slate-700/30 px-4 py-3">
+        <div class="max-w-2xl mx-auto flex items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <span id="progress-text" class="text-sm font-medium text-slate-300">Day 1 of 30</span>
+                <span id="progress-completed" class="text-xs text-slate-500">0 completed</span>
             </div>
-            <h1>Quran Context</h1>
-            <p>Discover ayahs with their full meaning.</p>
-        </header>
-
-        <div class="controls">
-            <button id="generate-btn" class="primary-btn">
-                <span>Fetch Random Ayah</span>
-            </button>
-        </div>
-
-        <div id="error-message" class="hidden"></div>
-        
-        <div id="loading" class="hidden">
-            <div class="spinner"></div>
-            <p id="loading-text">Fetching verses...</p>
-        </div>
-
-        <button id="prev-btn" class="nav-btn hidden">
-            <span class="icon">↑</span> Load Previous Ayah
-        </button>
-
-        <div id="verses-container" class="verses-list">
+            <div class="flex-1 h-2 bg-slate-800 rounded-full overflow-hidden">
+                <div id="progress-bar-fill" class="h-full bg-gradient-to-r from-cmu-red to-cmu-gold rounded-full transition-all duration-300 ease-out" style="width: 0%"></div>
             </div>
-
-        <button id="next-btn" class="nav-btn hidden">
-            <span class="icon">↓</span> Load Next Ayah
-        </button>
-       
-        
-        <footer>
-            <p>CMU-Q Muslim Student Association</p>
-        </footer>
+        </div>
     </div>
+
+    <!-- Hijri Offset + Khatmahs Controls -->
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 py-4 px-4 border-b border-slate-700/30">
+        <div class="flex items-center gap-2">
+            <span class="text-xs text-slate-500 uppercase tracking-wider">Hijri day</span>
+            <button id="hijri-minus" type="button" class="khatmah-btn w-9 h-9 rounded-lg flex items-center justify-center font-bold text-lg" aria-label="Decrease Hijri day by 1">−</button>
+            <span id="hijri-day-display" class="text-sm font-semibold w-8 text-center text-cmu-gold">1</span>
+            <button id="hijri-plus" type="button" class="khatmah-btn w-9 h-9 rounded-lg flex items-center justify-center font-bold text-lg" aria-label="Increase Hijri day by 1">+</button>
+        </div>
+        <div class="flex items-center gap-2">
+            <span class="text-xs text-slate-500 uppercase tracking-wider">Khatmahs</span>
+            <div class="khatmah-input-group flex items-center rounded-lg overflow-hidden border border-slate-600">
+                <button id="khatmah-minus" type="button" class="khatmah-btn w-9 h-9 flex items-center justify-center font-bold" aria-label="Decrease khatmahs">−</button>
+                <input type="number" id="khatmah-input" min="1" max="10" value="1" readonly
+                    class="khatmah-input w-12 text-center bg-slate-800/50 text-lg font-semibold focus:outline-none focus:ring-0">
+                <button id="khatmah-plus" type="button" class="khatmah-btn w-9 h-9 flex items-center justify-center font-bold" aria-label="Increase khatmahs">+</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Outside Ramadan Banner -->
+    <div id="outside-ramadan-banner" class="hidden mx-4 mt-3 p-3 rounded-xl glass-card border border-amber-600/30 text-amber-200 text-sm text-center">
+        Ramadan is approaching.
+    </div>
+
+    <!-- Carousel -->
+    <main id="carousel" class="flex-1 overflow-x-auto overflow-y-hidden carousel-container" role="region" aria-roledescription="carousel" aria-label="Ramadan daily reading schedule" tabindex="0">
+        <div id="carousel-inner" class="carousel-inner">
+            <!-- Cards rendered by app.js -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-4 text-center text-slate-500 text-sm border-t border-slate-700/30">
+        <p>CMU-Q Muslim Student Association</p>
+    </footer>
 
     <script src="app.js"></script>
 </body>

@@ -83,6 +83,61 @@ header p {
     margin-bottom: 2rem;
 }
 
+/* Input Group */
+.input-group {
+    width: 100%;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.input-group label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.input-group input[type="number"] {
+    background-color: var(--card-bg);
+    border: 1px solid #404040;
+    border-radius: var(--radius);
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 14px 20px;
+    font-family: var(--font-english);
+    transition: border-color 0.2s;
+}
+
+.input-group input[type="number"]:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.input-group input[type="number"]::-webkit-inner-spin-button,
+.input-group input[type="number"]::-webkit-outer-spin-button {
+    opacity: 1;
+}
+
+/* Badge line in header */
+header .badge-line {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+header p:not(.badge-line) {
+    color: var(--text-secondary);
+}
+
 .primary-btn {
     background-color: var(--accent);
     color: #fff;
@@ -145,6 +200,128 @@ header p {
 }
 
 .nav-btn.hidden { display: none; }
+
+/* Summary Card - Project Khatmah */
+#summary-container {
+    margin-bottom: 2rem;
+}
+
+.summary-card {
+    background-color: var(--highlight-bg);
+    border-color: var(--accent);
+    box-shadow: var(--shadow);
+    position: relative;
+    z-index: 2;
+    transform: scale(1.02);
+}
+
+.summary-card .summary-stats {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.summary-card .summary-milestones {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.summary-card .summary-milestones li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #333;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.summary-card .summary-milestones li:last-child {
+    border-bottom: none;
+}
+
+.summary-card .summary-note {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+/* Day Table - Project Khatmah */
+.schedule-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 1rem;
+}
+
+.day-table {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.day-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--card-bg);
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius);
+    border: 1px solid #333;
+    transition: all 0.2s;
+}
+
+.day-row:hover {
+    border-color: #555;
+}
+
+.day-row.milestone {
+    background-color: var(--highlight-bg);
+    border-color: var(--accent);
+}
+
+.day-row .day-number {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.day-row .juz-target {
+    font-weight: 600;
+    color: var(--accent);
+}
+
+.day-row .page-range {
+    font-weight: 400;
+    color: var(--text-secondary);
+    font-size: 0.9em;
+}
+
+.day-row .khatmah-badge {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.day-row.milestone .khatmah-badge {
+    background: var(--accent);
+    color: #fff;
+}
+
+@media (max-width: 600px) {
+    .day-row {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .day-row .khatmah-badge {
+        width: 100%;
+        text-align: center;
+    }
+}
 
 /* Verse Cards */
 .verses-list {
