@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#0f172a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Khatmah | CMU-Q MSA</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -21,7 +24,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-slate-900 text-slate-100 font-sans min-h-screen flex flex-col antialiased">
+<body class="bg-slate-900 text-slate-100 font-sans min-h-screen flex flex-col antialiased safe-area-padding">
     <!-- Header -->
     <header class="text-center py-5 border-b border-slate-700/50">
         <img src="logo.png" alt="CMU-Q MSA Logo" class="w-16 h-auto mx-auto mb-2 rounded-lg object-contain">
@@ -30,7 +33,7 @@
     </header>
 
     <!-- Progress Bar (state-driven, never read from DOM) -->
-    <div class="sticky top-0 z-20 glass-bar border-b border-slate-700/30 px-4 py-3">
+    <div class="sticky top-0 z-20 glass-bar border-b border-slate-700/30 px-4 py-3 safe-area-top">
         <div class="max-w-2xl mx-auto flex items-center justify-between gap-4">
             <div class="flex items-center gap-3">
                 <span id="progress-text" class="text-sm font-medium text-slate-300">Day 1 of 30</span>
@@ -46,16 +49,16 @@
     <div class="flex flex-col sm:flex-row items-center justify-center gap-4 py-4 px-4 border-b border-slate-700/30">
         <div class="flex items-center gap-2">
             <span class="text-xs text-slate-500 uppercase tracking-wider">Hijri day</span>
-            <button id="hijri-minus" type="button" class="khatmah-btn w-9 h-9 rounded-lg flex items-center justify-center font-bold text-lg" aria-label="Decrease Hijri day by 1">−</button>
+            <button id="hijri-minus" type="button" class="khatmah-btn khatmah-btn-touch w-9 h-9 min-w-[44px] min-h-[44px] sm:min-w-0 sm:min-h-0 rounded-lg flex items-center justify-center font-bold text-lg" aria-label="Decrease Hijri day by 1">−</button>
             <span id="hijri-day-display" class="text-sm font-semibold w-8 text-center text-cmu-gold">1</span>
-            <button id="hijri-plus" type="button" class="khatmah-btn w-9 h-9 rounded-lg flex items-center justify-center font-bold text-lg" aria-label="Increase Hijri day by 1">+</button>
+            <button id="hijri-plus" type="button" class="khatmah-btn khatmah-btn-touch w-9 h-9 min-w-[44px] min-h-[44px] sm:min-w-0 sm:min-h-0 rounded-lg flex items-center justify-center font-bold text-lg" aria-label="Increase Hijri day by 1">+</button>
         </div>
         <div class="flex items-center gap-2">
             <span class="text-xs text-slate-500 uppercase tracking-wider">Khatmahs</span>
             <div class="khatmah-input-group flex items-center rounded-lg overflow-hidden border border-slate-600">
-                <button id="khatmah-minus" type="button" class="khatmah-btn w-9 h-9 flex items-center justify-center font-bold" aria-label="Decrease khatmahs">−</button>
+                <button id="khatmah-minus" type="button" class="khatmah-btn khatmah-btn-touch w-9 h-9 min-w-[44px] min-h-[44px] sm:min-w-0 sm:min-h-0 flex items-center justify-center font-bold" aria-label="Decrease khatmahs">−</button>
                 <span id="khatmah-input" class="khatmah-value w-12 text-center bg-slate-800/50 text-lg font-semibold py-2" aria-live="polite">1</span>
-                <button id="khatmah-plus" type="button" class="khatmah-btn w-9 h-9 flex items-center justify-center font-bold" aria-label="Increase khatmahs">+</button>
+                <button id="khatmah-plus" type="button" class="khatmah-btn khatmah-btn-touch w-9 h-9 min-w-[44px] min-h-[44px] sm:min-w-0 sm:min-h-0 flex items-center justify-center font-bold" aria-label="Increase khatmahs">+</button>
             </div>
         </div>
     </div>
@@ -73,7 +76,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="py-4 text-center text-slate-500 text-sm border-t border-slate-700/30">
+    <footer class="py-4 pb-[max(1rem,env(safe-area-inset-bottom))] text-center text-slate-500 text-sm border-t border-slate-700/30">
         <p>CMU-Q Muslim Student Association</p>
     </footer>
 

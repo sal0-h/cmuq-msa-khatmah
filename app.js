@@ -229,12 +229,39 @@ function renderCarousel() {
         })
         .join('');
 
+    const TAP_THRESHOLD = 10;
+
     carouselInner.querySelectorAll('[data-day]').forEach((el) => {
-        el.addEventListener('click', () => toggleDayComplete(parseInt(el.dataset.day, 10)));
+        const day = parseInt(el.dataset.day, 10);
+        let touchHandled = false;
+
+        const handleTap = () => toggleDayComplete(day);
+
+        el.addEventListener('click', (e) => {
+            if (touchHandled) {
+                touchHandled = false;
+                return;
+            }
+            handleTap();
+        });
+
+        let touchStartX = 0;
+        el.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+        }, { passive: true });
+        el.addEventListener('touchend', (e) => {
+            const touchEndX = e.changedTouches[0].clientX;
+            if (Math.abs(touchEndX - touchStartX) <= TAP_THRESHOLD) {
+                touchHandled = true;
+                e.preventDefault();
+                handleTap();
+            }
+        }, { passive: false });
+
         el.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
-                toggleDayComplete(parseInt(el.dataset.day, 10));
+                handleTap();
             }
         });
     });
